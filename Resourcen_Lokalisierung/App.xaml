@@ -1,0 +1,49 @@
+﻿<Application x:Class="Resourcen_Lokalisierung.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Resourcen_Lokalisierung"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Languages/German.xaml" />
+                <ResourceDictionary Source="pack://siteOfOrigin:,,,/Styles/Normal.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Slider">
+                <Style.Triggers>
+                    <!--Setter mit if-Abfrage-->
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="Background" Value="Red" />
+                    </Trigger>
+                </Style.Triggers>
+                
+                <Setter Property="Minimum" Value="1" />
+                <Setter Property="Maximum" Value="100" />
+            </Style>
+
+          
+            <Style TargetType="StackPanel"  x:Key="specialStack">
+                <Setter Property="Background" Value="{DynamicResource mainBackground}" />
+            </Style>
+
+            <LinearGradientBrush x:Key="crazyBackground" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                        <RotateTransform Angle="2497.62" CenterY="0.5" CenterX="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="Aqua" Offset="0.109"/>
+                <GradientStop Color="White" Offset="0.874"/>
+                <GradientStop Color="#FF18B848" Offset="0.48"/>
+                <GradientStop Color="#FFCA1EC0" Offset="0.687"/>
+                <GradientStop Color="#FFBCEACA" Offset="0.768"/>
+                <GradientStop Color="#FF36D465" Offset="0.36"/>
+            </LinearGradientBrush>
+
+        </ResourceDictionary> 
+    </Application.Resources>
+</Application>

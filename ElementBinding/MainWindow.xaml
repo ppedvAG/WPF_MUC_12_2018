@@ -1,0 +1,27 @@
+﻿<Window x:Class="ElementBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElementBinding"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel VerticalAlignment="Center" Margin="10">
+        <!--Binding Source-->
+        <Slider Value="30" x:Name="slider1" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" />
+        <!--Binding Target-->
+        <TextBox x:Name="textbox1" Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+        <TextBox x:Name="textbox2" Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
+        <TextBox x:Name="textbox3" Text="{Binding ElementName=slider1,Path=Value,Mode=OneWay}"  />
+        <TextBox x:Name="textbox4" 
+                 Height="{Binding ElementName=slider1,Path=Value,Mode=OneWay}"
+                 Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+        <Button Click="Button_Click">Update</Button>
+        
+        <CheckBox x:Name="checkbox1">Verheiratet</CheckBox>
+        <StackPanel Visibility="{Binding ElementName=checkbox1,Path=IsChecked,Mode=OneWay,Converter={StaticResource boolConverter},ConverterParameter=hidden}" Orientation="Horizontal" Background="Aqua">
+            <TextBlock Margin="0,0,10,0">Ehepartner:</TextBlock>
+            <TextBox Width="100"></TextBox>
+        </StackPanel>
+    </StackPanel>
+</Window>

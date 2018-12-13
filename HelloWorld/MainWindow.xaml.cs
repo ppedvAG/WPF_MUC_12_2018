@@ -24,5 +24,27 @@ namespace HelloWorld
         {
             InitializeComponent();
         }
+
+        Random random = new Random();
+
+        //EventHandler-Methode für das Click-Event eines Buttons
+        private void Start_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button neuerButton = new Button();
+            neuerButton.Content = "Start";
+            neuerButton.HorizontalAlignment = (HorizontalAlignment)random.Next(0, 4);
+            neuerButton.VerticalAlignment = (VerticalAlignment)random.Next(0, 4);
+            neuerButton.Padding = new Thickness(10);
+            neuerButton.Click += NeuerButton_Click;
+            mainGrid.Children.Add(neuerButton);
+
+            ThicknessConverter converter = new ThicknessConverter();
+            Thickness t = (Thickness)converter.ConvertFrom("10,10,5,0");
+        }
+
+        private void NeuerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello World!");
+        }
     }
 }

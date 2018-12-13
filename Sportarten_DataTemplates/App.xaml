@@ -1,0 +1,87 @@
+﻿<Application x:Class="Sportarten_DataTemplates.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:Sportarten_DataTemplates"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Storyboard x:Key="openAnim">
+            <DoubleAnimation Storyboard.TargetName="outerStack"
+                                                 Storyboard.TargetProperty="Width"
+                                                 From="{Binding ElementName=image,Path=ActualWidth,Mode=OneWay}"
+                                                 To="500" Duration="0:0:1" />
+        </Storyboard>
+
+        <DataTemplate DataType="{x:Type local:Sportart}" x:Key="sportartTemplate">
+           
+            <StackPanel x:Name="outerStack"  Width="50" Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard Storyboard="{StaticResource openAnim}">
+                           
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="outerStack"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="{Binding ElementName=image,Path=ActualWidth,Mode=OneWay}"
+                                                 From="500" Duration="0:0:1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </StackPanel.Triggers>
+                <Image x:Name="image" Height="100" Source="{Binding ImageUrl}" />
+                <StackPanel>
+                    <TextBox Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <StackPanel>
+                        <CheckBox IsChecked="{Binding Anstrengend,Mode=TwoWay}">Anstrengend</CheckBox>
+                    <ComboBox ItemsSource="{Binding HilfsmittelEnumValues,Mode=OneWay}" SelectedItem="{Binding Hilfsmittel,Mode=TwoWay}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Sportart">
+                        <!--<TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="MouseUp">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="listbox1"
+                                            Storyboard.TargetProperty="Height"
+                                            From="0" To="100" Duration="0:0:1" 
+                                            />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBlock.Triggers>-->
+                    </TextBlock>
+                    <ListBox x:Name="listbox1" Height="0" ItemsSource="{Binding Spieler,Mode=OneWay}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:Spieler}">
+                                <TextBox Text="{Binding Path=Name,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Tag="{Binding Mode=OneWay}"  Click="Button_Click">Neuer Spieler</Button>
+                </StackPanel>
+            </StackPanel>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Anstrengend,Mode=OneWay}" Value="True">
+                    <Setter TargetName="outerStack" Property="Background" Value="Red" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Anstrengend,Mode=OneWay}" Value="False">
+                    <Setter TargetName="outerStack" Property="Background" Value="Green" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+
+      
+
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Application.Resources>
+</Application>

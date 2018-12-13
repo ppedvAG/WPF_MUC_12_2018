@@ -1,0 +1,26 @@
+﻿<Window x:Class="Sportarten_DataTemplates.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sportarten_DataTemplates"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <d:Window.DataContext>
+        <x:Array Type="{x:Type local:Sportart}">
+            <local:Sportart Name="Handball" Anstrengend="True" Hilfsmittel="Ball" ImageUrl="https://stillmed.olympic.org/media/Images/OlympicOrg/News/2016/08/20/2016-08-20-Handball-Women-thumbnail.jpg" />
+            <local:Sportart Name="Tennis" Anstrengend="False" Hilfsmittel="Schläger" ImageUrl="https://i.eurosport.com/2018/11/06/2456059-51019895-2560-1440.jpg" />
+        </x:Array>
+    </d:Window.DataContext>
+    <StackPanel x:Name="grid1">
+        <TextBlock>Es gibt momentan <Run Text="{Binding Path=Length,Mode=OneWay}" /> Sportarten.</TextBlock>
+        <ListBox HorizontalContentAlignment="Stretch" x:Name="listbox1" MaxHeight="300" Width="500"  ItemsSource="{Binding Mode=OneWay}" ItemTemplate="{StaticResource sportartTemplate}" />
+
+        <Button Click="Button_Neu_Click">Neue Sportart</Button>
+        <Button Click="Button_Update_Click">Update</Button>
+        <Button Click="Button_Delete_Click">Alles löschen</Button>
+        <Viewbox Height="400">
+            <ContentPresenter HorizontalAlignment="Center" Content="{Binding ElementName=listbox1,Path=SelectedItem,Mode=OneWay}" ContentTemplate="{StaticResource sportartTemplate}" />
+        </Viewbox>
+    </StackPanel>
+</Window>
