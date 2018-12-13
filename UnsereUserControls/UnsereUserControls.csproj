@@ -80,9 +80,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sportarten_DataTemplates\Sportarten_DataTemplates.csproj">
-      <Project>{08abf207-4440-42c5-b5e4-76b7847322e4}</Project>
-      <Name>Sportarten_DataTemplates</Name>
+    <ProjectReference Include="..\SportLibrary\SportLibrary.csproj">
+      <Project>{8cfa546e-5e44-447f-bcad-a0083b74f2f1}</Project>
+      <Name>SportLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

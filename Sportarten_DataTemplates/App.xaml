@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Sportarten_DataTemplates"
+             xmlns:usercontrols="clr-namespace:UnsereUserControls;assembly=UnsereUserControls"
+             xmlns:sportlibrary="clr-namespace:SportLibrary;assembly=SportLibrary"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Storyboard x:Key="openAnim">
@@ -12,7 +14,13 @@
                                                  To="500" Duration="0:0:1" />
         </Storyboard>
 
-        <DataTemplate DataType="{x:Type local:Sportart}" x:Key="sportartTemplate">
+        <DataTemplate DataType="{x:Type sportlibrary:Sportart}" x:Key="newSportart">
+            <usercontrols:SportartPresenter Height="100" CurrentSportart="{Binding Mode=OneWay}"  />
+        </DataTemplate>
+
+
+
+        <!--<DataTemplate DataType="{x:Type sportlibrary:Sportart}" x:Key="sportartTemplate">
            
             <StackPanel x:Name="outerStack"  Width="50" Orientation="Horizontal" HorizontalAlignment="Left">
                 <StackPanel.Triggers>
@@ -42,7 +50,7 @@
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Sportart">
-                        <!--<TextBlock.Triggers>
+                        --><!--<TextBlock.Triggers>
                             <EventTrigger RoutedEvent="MouseUp">
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -54,11 +62,11 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
-                        </TextBlock.Triggers>-->
+                        </TextBlock.Triggers>--><!--
                     </TextBlock>
                     <ListBox x:Name="listbox1" Height="0" ItemsSource="{Binding Spieler,Mode=OneWay}">
                         <ListBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type local:Spieler}">
+                            <DataTemplate DataType="{x:Type sportlibrary:Spieler}">
                                 <TextBox Text="{Binding Path=Name,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -75,7 +83,7 @@
                     <Setter TargetName="outerStack" Property="Background" Value="Green" />
                 </DataTrigger>
             </DataTemplate.Triggers>
-        </DataTemplate>
+        </DataTemplate>-->
 
 
       

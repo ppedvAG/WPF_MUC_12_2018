@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
-namespace Sportarten_DataTemplates
+namespace SportLibrary
 {
+    [ContentProperty(nameof(Sportart.Spieler))]
     public class Sportart : INotifyPropertyChanged
     {
         public enum HilfsmittelEnum { Schier, Ball, Schläger, Badehose }

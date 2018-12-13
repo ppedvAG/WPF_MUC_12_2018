@@ -55,7 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Sportart.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +93,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SportLibrary\SportLibrary.csproj">
+      <Project>{8cfa546e-5e44-447f-bcad-a0083b74f2f1}</Project>
+      <Name>SportLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnsereUserControls\UnsereUserControls.csproj">
+      <Project>{2416da7f-f6c3-4c58-8bac-8a8e86f217b9}</Project>
+      <Name>UnsereUserControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

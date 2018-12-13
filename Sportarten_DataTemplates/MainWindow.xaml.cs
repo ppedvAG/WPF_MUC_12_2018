@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportLibrary;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Sportarten_DataTemplates
         ObservableCollection<Sportart> _sportarten = new ObservableCollection<Sportart>()
         {
             new Sportart("Tischtennis", true, Sportart.HilfsmittelEnum.Schläger, "https://stillmed.olympic.org/media/Images/OlympicOrg/News/2016/08/20/2016-08-20-Handball-Women-thumbnail.jpg"),
-            new Sportart("Schwimmen", true, Sportart.HilfsmittelEnum.Badehose, "https://stillmed.olympic.org/media/Images/OlympicOrg/News/2016/08/20/2016-08-20-Handball-Women-thumbnail.jpg")
+            new Sportart("Schwimmen", true, Sportart.HilfsmittelEnum.Badehose, "https://i.eurosport.com/2018/11/06/2456059-51019895-2560-1440.jpg")
         };
 
         public MainWindow()

@@ -4,20 +4,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UnsereUserControls"
-             xmlns:sportarten_datatemplates="clr-namespace:Sportarten_DataTemplates;assembly=Sportarten_DataTemplates"
+             xmlns:sportlibrary="clr-namespace:SportLibrary;assembly=SportLibrary"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="200" d:DesignWidth="800">
     <d:UserControl.DataContext>
-        <sportarten_datatemplates:Sportart Name="Handball" Hilfsmittel="Ball" Anstrengend="False" ImageUrl="" />
+        <sportlibrary:Sportart Name="Handball" Hilfsmittel="Ball" Anstrengend="False">
+            <sportlibrary:Spieler Name="Alex" />
+            <sportlibrary:Spieler Name="Steffi" />
+        </sportlibrary:Sportart>
     </d:UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="0" />
-            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        
-        
+
+        <!--1. Spalte-->
+        <DockPanel>
+            <TextBox HorizontalAlignment="Center" MinWidth="100" 
+                     Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top" />
+            <Image Source="{Binding ImageUrl,Mode=OneWay}" Stretch="Uniform" />
+        </DockPanel>
+        <!--2. Spalte-->
+        <Border Padding="4" Grid.Column="1">
+            <StackPanel  VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding Anstrengend,Mode=TwoWay}">Anstrengend</CheckBox>
+                <TextBlock>Hilfsmittel:</TextBlock>
+                <ComboBox SelectedItem="{Binding Hilfsmittel,Mode=TwoWay}"
+                      ItemsSource="{Binding HilfsmittelEnumValues,Mode=OneWay}" />
+                <Button>Neuen Spieler hinzufügen</Button>
+            </StackPanel>
+        </Border>
+        <!--3. Spalte-->
+        <DockPanel Grid.Column="2">
+            <TextBlock DockPanel.Dock="Top">Spieler:</TextBlock>
+            <ListBox ItemsSource="{Binding Spieler,Mode=OneWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type sportlibrary:Spieler}">
+                        <TextBox Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
     </Grid>
 </UserControl>
