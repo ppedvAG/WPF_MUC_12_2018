@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="UnsereUserControls.SportartPresenter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UnsereUserControls"
+             xmlns:sportarten_datatemplates="clr-namespace:Sportarten_DataTemplates;assembly=Sportarten_DataTemplates"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <d:UserControl.DataContext>
+        <sportarten_datatemplates:Sportart Name="Handball" Hilfsmittel="Ball" Anstrengend="False" ImageUrl="" />
+    </d:UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="0" />
+        </Grid.ColumnDefinitions>
+        
+        
+        
+    </Grid>
+</UserControl>

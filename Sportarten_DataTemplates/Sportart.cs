@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Sportarten_DataTemplates
 {
-
     public class Sportart : INotifyPropertyChanged
     {
-
         public enum HilfsmittelEnum { Schier, Ball, Schläger, Badehose }
         private string _name;
 
@@ -48,7 +46,7 @@ namespace Sportarten_DataTemplates
             }
         }
 
-        private string _imageUrl;
+        private string _imageUrl = "https://stillmed.olympic.org/media/Images/OlympicOrg/News/2016/08/20/2016-08-20-Handball-Women-thumbnail.jpg";
         public string ImageUrl
         {
             get { return _imageUrl; }

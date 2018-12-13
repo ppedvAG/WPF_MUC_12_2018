@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ControlTemplates
+namespace UserControl_ColorPicker
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,11 +23,13 @@ namespace ControlTemplates
         public MainWindow()
         {
             InitializeComponent();
+            colorpicker1.GetValue(ColorPicker.CurrentColorProperty);
+            //Attached Properties setzen und auslesen
+            Grid.SetColumn(colorpicker1, 2);
+            Grid.GetColumn(colorpicker1);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Click");
-        }
+      
+       
     }
 }

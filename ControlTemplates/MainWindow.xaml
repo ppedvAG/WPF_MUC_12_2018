@@ -6,7 +6,40 @@
         xmlns:local="clr-namespace:ControlTemplates"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Button IsEnabled="True" HorizontalAlignment="Center">
+            <Button.RenderTransform>
+                <TranslateTransform x:Name="buttonTranslate" X="0" />
+            </Button.RenderTransform>
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation 
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetName="buttonTranslate"
+                                        Storyboard.TargetProperty="X"
+                                        From="{Binding ElementName=buttonTranslate,Path=X,Mode=OneWay}"
+                                        To="{Binding ElementName=buttonTranslate,Path=X,Mode=OneWay,Converter={StaticResource addConverter},ConverterParameter=80}"
+                                        Duration="0:0:0.100"
+                                        />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+
+           Gehalt erhöhen
+        </Button>
         
-    </Grid>
+        <!--F4->Template->Convert To Local Value-->
+        <Button Click="Button_Click" Background="Red" HorizontalAlignment="Center" Content="Runder Button"
+                FontSize="10" Template="{StaticResource runderButtonTemplate}"/>
+
+        <Button>ads</Button>
+    </StackPanel>
 </Window>

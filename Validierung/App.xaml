@@ -1,0 +1,48 @@
+﻿<Application x:Class="Validierung.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Validierung"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <!--Platzhalter für das zu dekorierende Element-->
+                            <Border Padding="5" BorderThickness="2" >
+                                <Border.BorderBrush>
+                                    <SolidColorBrush Color="Red" x:Name="errorBorderBrush" />
+                                </Border.BorderBrush>
+                                <Border.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                <ColorAnimation
+                                                Storyboard.TargetName="errorBorderBrush"
+                                                Storyboard.TargetProperty="Color"
+                                                From="Red"
+                                                To="White"
+                                                Duration="0:0:0.300" />
+                                                <DoubleAnimation 
+                                                Storyboard.TargetName="texblockError"
+                                                Storyboard.TargetProperty="Opacity"
+                                                From="0"
+                                                To="1"
+                                                Duration="0:0:0.300" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Border.Triggers>
+                                <AdornedElementPlaceholder VerticalAlignment="Center" x:Name="adorner" />
+                            </Border>
+                            <TextBlock  x:Name="texblockError"
+                                ToolTip="{Binding ElementName=adorner,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                                FontWeight="UltraBold" Foreground="Red">!</TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
