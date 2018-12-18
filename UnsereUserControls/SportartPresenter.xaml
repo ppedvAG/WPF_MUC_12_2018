@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:UnsereUserControls"
              xmlns:sportlibrary="clr-namespace:SportLibrary;assembly=SportLibrary"
              mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
              d:DesignHeight="200" d:DesignWidth="800">
     <d:UserControl.DataContext>
         <sportlibrary:Sportart Name="Handball" Hilfsmittel="Ball" Anstrengend="False">
@@ -13,18 +14,25 @@
             <sportlibrary:Spieler Name="Steffi" />
         </sportlibrary:Sportart>
     </d:UserControl.DataContext>
+    <UserControl.Resources>
+        <local:BoolToBrushConverter TrueColor="Red" FalseColor="Green" x:Key="boolConv"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition x:Name="column2" MaxWidth="0" Width="*" />
+            <ColumnDefinition x:Name="column3" MaxWidth="0" Width="*" />
         </Grid.ColumnDefinitions>
 
         <!--1. Spalte-->
         <DockPanel>
             <TextBox HorizontalAlignment="Center" MinWidth="100" 
                      Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top" />
-            <Image Source="{Binding ImageUrl,Mode=OneWay}" Stretch="Uniform" />
+            <StackPanel>
+                <Image x:Name="image1" Height="40" MouseEnter="Image1_MouseEnter" MouseUp="Image_MouseUp" Source="{Binding ImageUrl,Mode=OneWay}" Stretch="Uniform" />
+                <Rectangle x:Name="rect1" Fill="{Binding Anstrengend,Converter={StaticResource boolConv},Mode=OneWay}" 
+                           Height="10" Width="{Binding ElementName=image1,Path=ActualWidth,Mode=OneWay}" />
+            </StackPanel>
         </DockPanel>
         <!--2. Spalte-->
         <Border Padding="4" Grid.Column="1">
@@ -33,13 +41,13 @@
                 <TextBlock>Hilfsmittel:</TextBlock>
                 <ComboBox SelectedItem="{Binding Hilfsmittel,Mode=TwoWay}"
                       ItemsSource="{Binding HilfsmittelEnumValues,Mode=OneWay}" />
-                <Button>Neuen Spieler hinzufügen</Button>
+                <Button Click="Neuer_Spieler_Click">Neuen Spieler hinzufügen</Button>
             </StackPanel>
         </Border>
         <!--3. Spalte-->
         <DockPanel Grid.Column="2">
             <TextBlock DockPanel.Dock="Top">Spieler:</TextBlock>
-            <ListBox ItemsSource="{Binding Spieler,Mode=OneWay}">
+            <ListBox ItemsSource="{Binding Spieler,Mode=OneWay}" HorizontalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type sportlibrary:Spieler}">
                         <TextBox Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />

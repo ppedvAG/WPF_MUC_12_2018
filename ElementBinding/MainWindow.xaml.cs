@@ -29,7 +29,7 @@ namespace ElementBinding
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            textbox4.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            explicitTextbox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }

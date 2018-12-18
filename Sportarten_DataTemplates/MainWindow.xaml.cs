@@ -31,6 +31,9 @@ namespace Sportarten_DataTemplates
         public MainWindow()
         {
             InitializeComponent();
+            _sportarten[0].Spieler.Add(new Spieler() { Name="Alex" });
+            _sportarten[0].Spieler.Add(new Spieler() { Name="Maria" });
+            _sportarten[1].Spieler.Add(new Spieler() { Name="Torsten" });
             this.DataContext = _sportarten;
             
         }

@@ -39,7 +39,7 @@ namespace HelloWorld
             mainGrid.Children.Add(neuerButton);
 
             ThicknessConverter converter = new ThicknessConverter();
-            Thickness t = (Thickness)converter.ConvertFrom("10,10,5,0");
+            Thickness t = (Thickness)converter.ConvertFrom("10 10 5 0");
         }
 
         private void NeuerButton_Click(object sender, RoutedEventArgs e)

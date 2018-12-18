@@ -9,14 +9,14 @@
         Title="MainWindow"
         Height="450" Width="800">
     <Window.Resources>
-        <!--double windowFontSize = 20;-->
+        <Style TargetType="local:MainWindow" BasedOn="{StaticResource mainWindow}" />
         <system:Double x:Key="windowFontSize">30</system:Double>
     </Window.Resources>
-
     <StackPanel>
         <Menu Margin="0">
             <MenuItem Header="Sprache" MenuItem.Click="MenuItem_Sprache_Click">
                 <MenuItem Header="Deutsch" Tag="German.xaml" />
+
                 <MenuItem Header="Japanisch" Tag="Japanese.xaml" />
             </MenuItem>
             <MenuItem Header="Style" MenuItem.Click="MenuItem_Style_Click">

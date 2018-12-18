@@ -2,11 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Resourcen_Lokalisierung">
 
-    <LinearGradientBrush Opacity="0.3" StartPoint="0,0" EndPoint="0,1" x:Key="mainBackground">
-        <GradientStop Color="Black" Offset="0.3" />
-        <GradientStop Color="Red" Offset="0.6" />
-        <GradientStop Color="Gold" Offset="0.9" />
-    </LinearGradientBrush>
+    <Style TargetType="Window" x:Key="mainWindow">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush Opacity="0.3" StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Black" Offset="0.3" />
+                    <GradientStop Color="Red" Offset="0.6" />
+                    <GradientStop Color="Gold" Offset="0.9" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="FrameworkElement" x:Key="frameworkStyle">
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -35,5 +41,5 @@
     <Style TargetType="TextBlock" BasedOn="{StaticResource frameworkStyle}">
         <Setter Property="FontFamily" Value="Times New Roman" />
     </Style>
-    
+
 </ResourceDictionary>

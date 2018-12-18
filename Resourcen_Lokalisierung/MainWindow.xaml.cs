@@ -20,7 +20,7 @@ namespace Resourcen_Lokalisierung
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,9 +30,8 @@ namespace Resourcen_Lokalisierung
                 //MessageBox.Show($"Aktuelle Schriftgröße: {fontSize}");
                 this.Resources["windowFontSize"] = 50.0;
             }
-            
-        }
 
+        }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -59,8 +58,8 @@ namespace Resourcen_Lokalisierung
                 string path = $"Styles/{item.Tag.ToString()}";
                 //https://docs.microsoft.com/de-de/dotnet/framework/wpf/app-development/pack-uris-in-wpf
                 Application.Current.Resources.MergedDictionaries[1].Source = new Uri($"pack://siteOfOrigin:,,,/{path}");
-                //new MainWindow().Show();
-                //this.Close();
+                new MainWindow().Show();
+                this.Close();
             }
         }
     }

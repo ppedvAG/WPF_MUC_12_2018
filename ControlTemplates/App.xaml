@@ -7,7 +7,7 @@
         <local:DoubleAdditionConverter x:Key="addConverter" />
 
         <ControlTemplate TargetType="{x:Type ButtonBase}" x:Key="runderButtonTemplate">
-            <Border MouseEnter="Border_MouseEnter" MouseUp="Border_MouseUp" CornerRadius="100" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+            <Border CornerRadius="100" x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                 <Border.RenderTransform>
                     <TranslateTransform x:Name="borderTransform" />
                 </Border.RenderTransform>

@@ -97,6 +97,10 @@ namespace SportLibrary
             ImageUrl = imageUrl;
         }
 
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
 
 
         public Sportart()

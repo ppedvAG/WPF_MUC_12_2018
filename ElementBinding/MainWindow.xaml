@@ -6,22 +6,34 @@
         xmlns:local="clr-namespace:ElementBinding"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel VerticalAlignment="Center" Margin="10">
+    <UniformGrid Columns="2">
         <!--Binding Source-->
-        <Slider Value="30" x:Name="slider1" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" />
-        <!--Binding Target-->
-        <TextBox x:Name="textbox1" Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
-        <TextBox x:Name="textbox2" Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
-        <TextBox x:Name="textbox3" Text="{Binding ElementName=slider1,Path=Value,Mode=OneWay}"  />
-        <TextBox x:Name="textbox4" 
-                 Height="{Binding ElementName=slider1,Path=Value,Mode=OneWay}"
-                 Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
-        <Button Click="Button_Click">Update</Button>
-        
-        <CheckBox x:Name="checkbox1">Verheiratet</CheckBox>
-        <StackPanel Visibility="{Binding ElementName=checkbox1,Path=IsChecked,Mode=OneWay,Converter={StaticResource boolConverter},ConverterParameter=hidden}" Orientation="Horizontal" Background="Aqua">
-            <TextBlock Margin="0,0,10,0">Ehepartner:</TextBlock>
-            <TextBox Width="100"></TextBox>
+        <TextBlock>Binding Source:</TextBlock>
+        <Slider x:Name="slider1" Minimum="0" Maximum="100" Value="50" />
+
+        <!--Binding Targets-->
+        <TextBlock>Binding Target, OneWay:</TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=OneWay}" />
+        <TextBlock>Binding Target, TwoWay, LostFocus:</TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
+        <TextBlock>Binding Target, TwoWay, PropertyChanged:</TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock>Binding Target, OneTime:</TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=OneTime}" />
+        <TextBlock>Binding Target, TwoWay, Explicit:</TextBlock>
+        <TextBox x:Name="explicitTextbox" Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+        <Button Visibility="{Binding ElementName=cbZeigeButton,Path=IsChecked,Converter={StaticResource boolConverter}}" 
+                    Click="Button_Click">
+            Quelle aktualisieren
+        </Button>
+
+        <Grid />
+        <StackPanel>
+            <CheckBox x:Name="checkbox1">Verheiratet</CheckBox>
+            <StackPanel Visibility="{Binding ElementName=checkbox1,Path=IsChecked,Mode=OneWay,Converter={StaticResource boolConverter},ConverterParameter=hidden}" Orientation="Horizontal" Background="Aqua">
+                <TextBlock Margin="0,0,10,0">Ehepartner:</TextBlock>
+                <TextBox Width="100"></TextBox>
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </UniformGrid>
 </Window>

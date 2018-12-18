@@ -1,0 +1,78 @@
+﻿<Page x:Class="GoogleBooksGUI.Views.ResultView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GoogleBooksGUI.Views"
+      xmlns:viewmodels="clr-namespace:BookModels.ViewModels;assembly=BookModels"
+      xmlns:models="clr-namespace:BookModels.Models;assembly=BookModels"
+      mc:Ignorable="d" 
+      x:Name="page"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ResultView">
+    <Page.DataContext>
+        <viewmodels:ResultViewModel />
+    </Page.DataContext>
+    <Grid>
+        <DataGrid HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Books,Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <!--Cover-->
+                <DataGridTemplateColumn Header="Cover" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type models:Book}">
+                            <Image Height="100" MouseUp="Image_MouseUp" Tag="{Binding PreviewLink,Mode=OneWay}"   
+                                   Source="{Binding CoverURL,Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Titel-->
+                <DataGridTemplateColumn Header="Titel" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type models:Book}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title,Mode=OneWay}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Autoren-->
+                <DataGridTemplateColumn Header="Autoren" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type models:Book}">
+                            <ItemsControl ItemsSource="{Binding Authors,Mode=OneWay}" MaxHeight="100" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--Favoriten-->
+                <DataGridTemplateColumn Header="Favoriten" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type models:Book}">
+                            <StackPanel Orientation="Horizontal" x:Name="stack1">
+                                <Button x:Name="buttonAdd"
+                                        Command="{Binding ElementName=page,Path=DataContext.AddFavoriteCommand,Mode=OneWay}"
+                                        CommandParameter="{Binding}"
+                                        Margin="5" VerticalAlignment="Center">Hinzufügen</Button>
+                                <Button x:Name="buttonRemove" 
+                                        Command="{Binding ElementName=page,Path=DataContext.RemoveFavoriteCommand,Mode=OneWay}"
+                                        CommandParameter="{Binding}"
+                                        Margin="5" VerticalAlignment="Center">Entfernen</Button>
+                            </StackPanel>
+
+                            <!--DataTrigger-->
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsFavorite,Mode=OneWay}" Value="True">
+                                    <Setter TargetName="buttonAdd" Property="IsEnabled" Value="False" />
+                                    <Setter TargetName="stack1" Property="Background" Value="Green" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsFavorite,Mode=OneWay}" Value="False">
+                                    <Setter TargetName="buttonRemove" Property="IsEnabled" Value="False" />
+                                    <Setter TargetName="stack1" Property="Background" Value="Gray" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

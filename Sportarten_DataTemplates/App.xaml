@@ -7,6 +7,9 @@
              xmlns:sportlibrary="clr-namespace:SportLibrary;assembly=SportLibrary"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <local:ObjectToSportartcConverter x:Key="sportartConv" />
+
         <Storyboard x:Key="openAnim">
             <DoubleAnimation Storyboard.TargetName="outerStack"
                                                  Storyboard.TargetProperty="Width"
@@ -15,7 +18,7 @@
         </Storyboard>
 
         <DataTemplate DataType="{x:Type sportlibrary:Sportart}" x:Key="newSportart">
-            <usercontrols:SportartPresenter Height="100" CurrentSportart="{Binding Mode=OneWay}"  />
+            <usercontrols:SportartPresenter Trigger="Click" Height="100" CurrentSportart="{Binding Mode=OneWay}"  />
         </DataTemplate>
 
 
